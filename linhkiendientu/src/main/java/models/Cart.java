@@ -48,7 +48,7 @@ public class Cart {
 		}
 	}
 	
-	public void remove(int productID) {
+	public void removeItem(int productID) {
 		if(getItemById(productID)!=null) {
 			items.remove(getItemById(productID));
 		}

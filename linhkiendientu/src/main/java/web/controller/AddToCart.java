@@ -60,7 +60,7 @@ public class AddToCart extends HttpServlet {
 			productID = Integer.parseInt(id);
 			DAO dao = new DAO();
 			Product product = dao.getProductByID(id);
-			float price = product.getProductPrice();
+			Double price = product.getProductPrice();
 			Item t = new Item(product,amount,price);
 			cart.addItem(t);
 		}catch(NumberFormatException E) {

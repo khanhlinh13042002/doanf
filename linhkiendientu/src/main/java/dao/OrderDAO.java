@@ -37,7 +37,7 @@ public class OrderDAO {
 					st2.setInt(1, id_order);
 					st2.setInt(2,i.getProduct().getProductID());
 					st2.setInt(3,i.getQuantity());
-					st2.setFloat(4,i.getPrice());
+					st2.setDouble(4,i.getPrice());
 					st2.executeUpdate();
 				}
 			}

@@ -23,7 +23,7 @@ public class DAO {
 			ps = conn.prepareStatement(query);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getNString(4), rs.getInt(5),
+				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getNString(4), rs.getInt(5),
 						rs.getString(7), rs.getInt(6), rs.getString(8)));
 			}
 		} catch (Exception e) {
@@ -41,7 +41,7 @@ public class DAO {
 			ps.setString(1, id);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				return new Product(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getNString(4), rs.getInt(5),
+				return new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getNString(4), rs.getInt(5),
 						rs.getString(7), rs.getInt(6), rs.getString(8));
 			}
 
@@ -61,7 +61,7 @@ public class DAO {
 			ps.setString(1, "%" + search + "%");
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getNString(4), rs.getInt(5),
+				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getNString(4), rs.getInt(5),
 						rs.getString(7), rs.getInt(6), rs.getString(8)));
 			}
 		} catch (Exception e) {

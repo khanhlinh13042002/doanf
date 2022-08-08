@@ -24,7 +24,7 @@ public class CategoryDAO {
 			ps.setString(1, categoryProductID);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getNString(4), rs.getInt(5),
+				list.add(new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getNString(4), rs.getInt(5),
 						rs.getString(7), rs.getInt(6), rs.getString(8)));
 			}
 		} catch (Exception e) {
