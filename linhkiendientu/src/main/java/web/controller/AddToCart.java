@@ -57,10 +57,10 @@ public class AddToCart extends HttpServlet {
 		int amount, productID;
 		try {
 			amount = Integer.parseInt(soluong);
-			productID = Integer.parseInt(id);
+//			productID = Integer.parseInt(id);
 			DAO dao = new DAO();
 			Product product = dao.getProductByID(id);
-			Double price = product.getProductPrice();
+			double price = product.getProductPrice();
 			Item t = new Item(product,amount,price);
 			cart.addItem(t);
 		}catch(NumberFormatException E) {

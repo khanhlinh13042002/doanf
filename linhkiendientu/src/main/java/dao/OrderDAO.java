@@ -23,7 +23,7 @@ public class OrderDAO {
 			ps = conn.prepareStatement(query);
 			ps.setInt(1,user.getUserID());
 			ps.setString(2,date);
-			ps.setFloat(3,cart.getTotalMoney());
+			ps.setDouble(3,cart.getTotalMoney());
 			ps.executeUpdate();
 			//lấy id của order vừa add
 			String sql = "select top 1 id_oder from oder order by id_oder desc";

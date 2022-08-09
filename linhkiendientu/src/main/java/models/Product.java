@@ -3,7 +3,7 @@ package models;
 public class Product {
 	private int productID;
 	private String productName;
-	private Double productPrice;
+	private double productPrice;
 	private String describe;
 	private int amount;
 	private String manufact;
@@ -15,7 +15,7 @@ public class Product {
 	}
 	
 	
-	public Product(int productID, String productName, Double productPrice, String describe, int amount, String manufact,
+	public Product(int productID, String productName, double productPrice, String describe, int amount, String manufact,
 			int categoryID, String image) {
 		super();
 		this.productID = productID;
@@ -29,7 +29,7 @@ public class Product {
 	}
 	
 	
-	public Product(int productID, String productName, Double productPrice, int amount) {
+	public Product(int productID, String productName, double productPrice, int amount) {
 		super();
 		this.productID = productID;
 		this.productName = productName;
@@ -59,10 +59,10 @@ public class Product {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	public Double getProductPrice() {
+	public double getProductPrice() {
 		return productPrice;
 	}
-	public void setProductPrice(Double productPrice) {
+	public void setProductPrice(double productPrice) {
 		this.productPrice = productPrice;
 	}
 	public String getDescribe() {

@@ -54,8 +54,8 @@ public class Cart {
 		}
 	}
 	
-	public float getTotalMoney(){
-		float t = 0;
+	public double getTotalMoney(){
+		double t = 0;
 		for(Item i: items) {
 			t+=	i.getQuantity()*i.getPrice();
 		}
