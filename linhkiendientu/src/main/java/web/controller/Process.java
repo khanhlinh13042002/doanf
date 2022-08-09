@@ -55,7 +55,7 @@ public class Process extends HttpServlet {
 			}else {
 				
 				DAO dao = new DAO();
-				Product product = dao.getProductByID(id);
+				Product product = dao.getProductByID(productID);
 				double price = product.getProductPrice();
 				Item t = new Item(product,amount,price);
 				cart.addItem(t);

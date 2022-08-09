@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div id="content">
-		<form action="">
+	
 			<section class="h-100" style="background-color: #eee;">
 				<div class="container h-100 py-5">
 					<div
@@ -84,7 +84,7 @@
 					</div>
 				</div>
 			</section>
-		</form>
+		
 	</div>
 	<!-- End Content -->
 	 <script type="text/javascript">

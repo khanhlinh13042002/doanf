@@ -23,8 +23,9 @@ public class DetailController extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("productID");
+		int productID = Integer.parseInt(id);
 		DAO dao = new DAO();
-		Product product = dao.getProductByID(id);
+		Product product = dao.getProductByID(productID);
 		request.setAttribute("detail", product);
 		request.getRequestDispatcher("views/web/detail.jsp").forward(request, response);
 	}

@@ -55,11 +55,11 @@ public class AddToCart extends HttpServlet {
 		String soluong = request.getParameter("amount");
 		String id = request.getParameter("productID");
 		int amount, productID;
-		try {
+		try {		
 			amount = Integer.parseInt(soluong);
-//			productID = Integer.parseInt(id);
+			productID = Integer.parseInt(id);
 			DAO dao = new DAO();
-			Product product = dao.getProductByID(id);
+			Product product = dao.getProductByID(productID);
 			double price = product.getProductPrice();
 			Item t = new Item(product,amount,price);
 			cart.addItem(t);

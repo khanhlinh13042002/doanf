@@ -32,13 +32,13 @@ public class DAO {
 		return list;
 	}
 
-	public Product getProductByID(String id) {
+	public Product getProductByID(int id) {
 		String query = "select * from product\n" + " where id_product = ?";
 
 		try {
 			conn = new DBContext().getConnection();
 			ps = conn.prepareStatement(query);
-			ps.setString(1, id);
+			ps.setInt(1, id);
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				return new Product(rs.getInt(1), rs.getString(2), rs.getDouble(3), rs.getNString(4), rs.getInt(5),
@@ -72,8 +72,8 @@ public class DAO {
 
 	public static void main(String[] args) {
 		DAO dao = new DAO();
-		Product tProduct = dao.getProductByID("2");
-		System.out.println(tProduct);
+		//Product tProduct = dao.getProductByID("2");
+	//	System.out.println(tProduct);
 
 	}
 
