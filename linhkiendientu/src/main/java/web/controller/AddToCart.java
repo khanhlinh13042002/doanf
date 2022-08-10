@@ -94,7 +94,7 @@ public class AddToCart extends HttpServlet {
 		request.setAttribute("size", listItem.size());
 		request.getRequestDispatcher("web-home").forward(request, response);
 
-
+		response.sendRedirect("web-home");
 	}
 
 }

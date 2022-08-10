@@ -800,3 +800,16 @@ a{
 .desc-detail p:last-child{
     padding-bottom: 16px;
 }
+
+
+/* Shopping cart DELETE BUTTON */
+#content .btn-del{
+		border: none; 
+		background: #fff; 
+		color: red; 
+		padding-right: 32px;
+		
+	}
+#content .btn-del:hover{
+	opacity:0.6;
+}	
