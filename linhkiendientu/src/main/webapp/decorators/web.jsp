@@ -48,10 +48,11 @@
 	<script type="text/javascript"
 		src="<c:url value='/template/web/assets/js/slideShow.js'/>"></script>
 	<script type="text/javascript">
-		function addCart(productID) {
-			document.f.action = "addCart?productID=" + productID;
-			document.f.submit();
-		}
+	function addCart(productID){
+		
+		document.f.action="addCart?productID="+productID;
+		document.f.submit();
+	}
 	</script>
 
 </body>

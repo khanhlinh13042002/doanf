@@ -64,9 +64,9 @@
 			<div class="product-title">Tất cả sản phẩm</div>
 			<div class="container d-flex justify-content-center mt-20 mb-20">
 			<form name="f" action="" method="post">
-			 <input type="hidden"  name="amount" value="1"> 			
+			 <input type="hidden"  name="num" value="1"> 			
 				<div class="row ">
-					<c:forEach items="${listProduct}" var="product">
+					<c:forEach items="${requestScope.listProduct}" var="p">
 						<div class="col-md-3 mt-2 mb-2">
 							<div class="card">
 								<div class="card-body">
@@ -79,18 +79,18 @@
 								<div class="card-body bg-light text-center">
 									<div class="mb-2">
 										<h6 class="font-weight-semibold mb-2">
-											<a href="detailProduct?productID=${product.productID}"
-												class="text-default mb-2" data-abc="true">${product.productName }</a>
+											<a href="detailProduct?productID=${p.productID}"
+												class="text-default mb-2" data-abc="true">${p.productName }</a>
 										</h6>
 										
 									</div>
-									<h3 class="mb-0 font-weight-semibold">${product.productPrice}</h3>
+									<h3 class="mb-0 font-weight-semibold">${p.productPrice}</h3>
 									<div>
 										<i class="fa fa-star star"></i> <i class="fa fa-star star"></i>
 										<i class="fa fa-star star"></i> <i class="fa fa-star star"></i>
 									</div>
 								           
-									<div class="text-muted mb-3">${product.manufact}</div>
+									<div class="text-muted mb-3">${p.manufact}</div>
 									<%-- <button style="background-color: orange; margin-bottom: 20px"
 										type="button" class="btn bg-cart">
 									<a href="addCart/productID=${product.productID }"></a>
@@ -98,7 +98,7 @@
 									</button> --%>
 									
 										<button style="background-color: orange; margin-bottom: 20px"
-											 onclick="addCart('${product.productID}')" class="btn bg-cart" name = "">
+											 onclick="addCart('${p.productID}')" class="btn bg-cart" name = "">
 											<i class="fa fa-cart-plus mr-2"></i> Add to cart
 										</button> 
 								</div>
@@ -123,12 +123,6 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript">
-	function addCart(productID){
-		document.f.action="addCart?productID="+productID;
-		document.f.submit();
-	}
-	</script>
 </html>
 
 	

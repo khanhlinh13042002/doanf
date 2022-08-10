@@ -18,7 +18,7 @@
 							style="font-size: 20px; margin-top: 20px; margin-left: 5px; text-transform: uppercase; font-weight: 700;">Giỏ
 							hàng của bạn</div>
 						<div class="col-10">
-						<c:set var="o" value="${sessionScope.cart }" />
+						<c:set var="o" value="${requestScope.cart }" />
 						<c:forEach items="${o.items}" var="i" >
 							<div class="card rounded-3 mb-4">
 								<div class="card-body p-4">
@@ -87,13 +87,7 @@
 		
 	</div>
 	<!-- End Content -->
-	 <script type="text/javascript">
-	function addCart(productID){
-		document.f.action="addCart?productID"+productID;
-		document.f.submit();
-	}
-		
-	</script> 
+
 	
 </body>
 </html>

@@ -3,12 +3,12 @@ package models;
 public class Item {
 	private Product product;
 	private int quantity;
-	private Double price;
+	private double price;
 	
 	public Item() {
 		
 	}
-	public Item(Product product, int quantity, Double price) {
+	public Item(Product product, int quantity, double price) {
 		super();
 		this.product = product;
 		this.quantity = quantity;
@@ -26,10 +26,10 @@ public class Item {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public Double getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(Double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	

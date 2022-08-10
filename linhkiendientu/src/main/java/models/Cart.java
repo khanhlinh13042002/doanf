@@ -41,8 +41,8 @@ public class Cart {
 	public void addItem(Item t) {
 		//có ở cart rồi
 		if(getItemById(t.getProduct().getProductID()) != null) {
-			Item i = getItemById(t.getProduct().getProductID());
-			i.setQuantity(i.getQuantity()+t.getQuantity());	
+			Item m = getItemById(t.getProduct().getProductID());
+			m.setQuantity(m.getQuantity()+t.getQuantity());	
 		}else {
 			items.add(t);
 		}
@@ -60,6 +60,39 @@ public class Cart {
 			t+=	i.getQuantity()*i.getPrice();
 		}
 		return t;
+	}
+	
+	private Product getProductByID(int productID, List<Product>list) {
+		for(Product i: list) {
+			if(i.getProductID()==productID) {
+				return i;
+			}
+		}
+		return null;
+	}
+	
+	public Cart(String txt, List<Product> list) {
+		items = new ArrayList<>();
+		try {
+			if(txt != null && txt.length()!=0) {
+				String[] s = txt.split("\\-");
+				for(String i: s) {
+					String [] n = i.split("\\:");
+					int id = Integer.parseInt(n[0]);
+					System.out.println("ProductId = " + id);
+					int quantity = Integer.parseInt(n[1]);
+					System.out.println("Quantity Product = " + quantity);
+					Product product = getProductByID(id,list);
+					Item t = new Item(product,quantity,product.getProductPrice());
+					addItem(t);
+					
+				}
+			}
+			
+		}catch(NumberFormatException e) {
+			
+			
+		}
 	}
 
 

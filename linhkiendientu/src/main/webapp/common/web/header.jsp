@@ -44,11 +44,11 @@
 			
 			%>
 			
-             <c:set var="size" value="${sessionScope.size }" />
-			 <a href="views/web/shoppingCart.jsp" class="cart_item"> <span
+            
+			 <a href="showCart" class="cart_item"> <span
 				class="cart_item__icon"><i class="fa-solid fa-cart-shopping"></i></span>
 				<span class="cart_item__text">Giỏ hàng</span> <span
-				class="cart_item__count">${size }</span>
+				class="cart_item__count">${requestScope.size }</span>
 
 			</a>
 		</div>
