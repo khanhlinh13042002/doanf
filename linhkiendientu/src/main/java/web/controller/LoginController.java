@@ -45,10 +45,12 @@ public class LoginController extends HttpServlet{
 		UserDAO userDAO = new UserDAO();
 		User user = userDAO.getUserAccount(acc, pass);
 		if (user == null) {
+			System.out.println("Login Failured!!!");
 			req.setAttribute("userlogin", "Đăng nhập thất bại !");
 			RequestDispatcher rq = req.getRequestDispatcher("views/login.jsp");
 			rq.forward(req, resp);
 		}else {
+			System.out.println("Login Success!!!");
 			HttpSession session = req.getSession();
 			session.setAttribute("user", user);
 			session.setAttribute("userloginsuccess", user.getUserName());
@@ -57,6 +59,10 @@ public class LoginController extends HttpServlet{
 			req.setAttribute("user", user);
 			req.setAttribute("id", user.getUserID());
 			req.setAttribute("user", user.getUserName());
+			System.out.println("Data request session ===> " + req.getSession());
+			System.out.println("Data User ===> " + user);
+			System.out.println("Get user name from session ===> " + ((User)session.getAttribute("user")).getUserName());
+			System.out.println("Data session ===> " + session);
 			req.getRequestDispatcher("views/web/home.jsp").forward(req, resp);
 			resp.sendRedirect("web-home");
 		}

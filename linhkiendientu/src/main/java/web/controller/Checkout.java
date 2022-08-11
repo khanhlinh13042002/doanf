@@ -24,54 +24,47 @@ import models.User;
 public class Checkout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Checkout() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		System.out.println("=== doPost ===> Starting......");
 		
-		
-		DAO d = new DAO();
 		OrderDAO dao = new OrderDAO();
-		List<Product> list = d.getAllProduct();
+		DAO d = new DAO();
+		List<Product> list = d.getAllProduct()	;
 		Cookie[] arr = request.getCookies();
-		String txt = "";
-		if (arr != null) {
-			for (Cookie o : arr) {
-				if (o.getName().equals("cart")) {
-					txt += o.getValue();
-					
+		String txt ="";
+		if(arr!=null) {
+			for(Cookie o:arr) {
+				if(o.getName().equals("cart")) {
+					txt+=o.getValue();
 				}
 			}
 		}
-
+		System.out.println("=== doPost ===> set cart......");
 		Cart cart = new Cart(txt, list);
-		HttpSession session= request.getSession()	;
+		HttpSession session= request.getSession();
 		User a= (User)session.getAttribute("user");
-		if (a==null) {
+		System.out.println("get user string ===> " + session.getAttribute("user"));
+		if (a == null) {
+			System.out.println("=== doPost ===> BACK TO Login ");
 			response.sendRedirect("dang-nhap");
 		}else {			
-			dao.addOrder(cart, a);
+			try {
+				System.out.println("=== Try ===> ");
+				dao.addOrder(a, cart);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("=== Error ===> "+ e.getMessage());
+				e.printStackTrace();
+			}
 			Cookie c = new Cookie("cart","");
+			System.out.println("--------------------"+c);
 			c.setMaxAge(0);
 			response.addCookie(c);
-			request.getRequestDispatcher("showCart").forward(request, response);
+			response.sendRedirect("web-home");
 		}
 	}
 
