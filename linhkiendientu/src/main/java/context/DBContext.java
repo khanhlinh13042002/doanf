@@ -20,7 +20,7 @@ public class DBContext {
 	private final String portNumber = "3306";
 	private final String databaseName = "electronic_components";
 	private final String userID = "root";
-	private final String password = "280412092312"; 
+	private final String password =""; 
 	private final String instance = "?serverTimezone=UTC";
 	
 	public static void main(String args[]){

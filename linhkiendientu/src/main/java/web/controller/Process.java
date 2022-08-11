@@ -1,17 +1,14 @@
 package web.controller;
 
 import java.io.IOException;
-import javax.servlet.http.Cookie;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import dao.DAO;
 import models.Cart;
@@ -66,7 +63,7 @@ public class Process extends HttpServlet {
 		DAO d = new DAO();
 		List<Product> list = d.getAllProduct();
 		Cookie[] arr = request.getCookies();
-		String txt = "";
+		String txt ="";
 		if (arr != null) {
 			for (Cookie o : arr) {
 				if (o.getName().equals("cart")) {
@@ -76,15 +73,16 @@ public class Process extends HttpServlet {
 				}
 			}
 		}
-
+		
 		Cart cart = new Cart(txt, list);
 		String num_raw = request.getParameter("num");
-		String id_raw = request.getParameter("productID");
-		int id, num = 0;
+		String id_raw = request.getParameter("id");
+		int id, num;
 		try {
 			id = Integer.parseInt(id_raw);
 			Product p = d.getProductByID(id);
 			int numStore = p.getAmount();
+			System.out.println("---------------------"+numStore);
 			num = Integer.parseInt(num_raw);
 			if (num == -1 && (cart.getQuantityById(id) <= 1)) {
 				cart.removeItem(id);
@@ -92,7 +90,7 @@ public class Process extends HttpServlet {
 				if (num == 1 && cart.getQuantityById(id) >= numStore) {
 					num = 0;
 				}
-				double price = p.getProductPrice() * 2;
+				double price = p.getProductPrice();
 				Item t = new Item(p, num, price);
 				cart.addItem(t);
 			}
@@ -101,13 +99,17 @@ public class Process extends HttpServlet {
 			// TODO: handle exception
 		}
 		List<Item> items = cart.getItems();
-		txt = "";
+		txt ="";
 		if (items.size() > 0) {
+			
 			txt = items.get(0).getProduct().getProductID() + ":" + items.get(0).getQuantity();
 			for (int i = 1; i < items.size(); i++) {
 				txt += "-" + items.get(i).getProduct().getProductID() + ":" + items.get(i).getQuantity();
+				
 			}
+			System.out.println("-----------------"+txt);
 		}
+		
 		Cookie c = new Cookie("cart", txt);
 		c.setMaxAge(2 * 24 * 60 * 60);
 		response.addCookie(c);
@@ -138,27 +140,28 @@ public class Process extends HttpServlet {
 		DAO d = new DAO();
 		List<Product> list = d.getAllProduct();
 		Cookie[] arr = request.getCookies();
-		String txt = "";
+		String txt ="";
 		if (arr != null) {
 			for (Cookie o : arr) {
 				if (o.getName().equals("cart")) {
-					txt += o.getValue();
+					txt+= o.getValue();
 					o.setMaxAge(0);
 					response.addCookie(o);
 				}
 			}
 		}
-		String id= request.getParameter("id");
+		String id= request.getParameter("ID");
 		String[] ids= txt.split("-");
 		String out="";
 		for(int i=0; i<ids.length;i++) {
 			String[] s=ids[i].split(":");
-			if(s[0].equals(id)) {
+			if(!s[0].equals(id)) {
 				if(out.isEmpty()) {
 					out=ids[i];
 				}
 				else{
-					txt+="-"+ids[i];
+					out+="-"+ids[i];
+				
 				}
 			}
 		}
@@ -172,6 +175,6 @@ public class Process extends HttpServlet {
 		
 		Cart cart = new Cart(out, list);
 		request.setAttribute("cart", out);
-		request.getRequestDispatcher("/views/web/shoppingCart.jsp").forward(request, response);
+		response.sendRedirect("showCart");
 	}
 }

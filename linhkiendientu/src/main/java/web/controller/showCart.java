@@ -14,6 +14,7 @@ import dao.CategoryDAO;
 import dao.DAO;
 import models.Cart;
 import models.CategoryProduct;
+import models.Item;
 import models.Product;
 
 /**
@@ -48,7 +49,9 @@ public class showCart extends HttpServlet {
         	}
         }
         Cart cart = new Cart(txt,listProduct);
+        List<Item> listItem = cart.getItems();   
         request.setAttribute("cart", cart);
+        request.setAttribute("size", listItem.size());
         request.getRequestDispatcher("views/web/shoppingCart.jsp").forward(request, response);
 	}
 

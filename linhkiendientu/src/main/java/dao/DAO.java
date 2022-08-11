@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import context.DBContext;
@@ -70,10 +71,14 @@ public class DAO {
 		return list;
 	}
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		DAO dao = new DAO();
-		//Product tProduct = dao.getProductByID("2");
-	//	System.out.println(tProduct);
+	List<Product> tProduct = dao.getAllProduct();
+	for (Product product : tProduct) {
+		System.out.println(tProduct);
+	}
+	
 
 	}
 

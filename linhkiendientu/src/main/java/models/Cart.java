@@ -79,11 +79,12 @@ public class Cart {
 				for(String i: s) {
 					String [] n = i.split("\\:");
 					int id = Integer.parseInt(n[0]);
-					System.out.println("ProductId = " + id);
+					//System.out.println("ProductId = " + id);
 					int quantity = Integer.parseInt(n[1]);
-					System.out.println("Quantity Product = " + quantity);
+					//System.out.println("Quantity Product = " + quantity);
 					Product product = getProductByID(id,list);
-					Item t = new Item(product,quantity,product.getProductPrice());
+					double price = product.getProductPrice();
+					Item t = new Item(product,quantity,price);
 					addItem(t);
 					
 				}

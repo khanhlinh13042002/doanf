@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -37,9 +38,9 @@
 											</p>
 										</div>
 										<div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-											<button class="btn btn-link px-2" type="button"
+											<button class="btn btn-link px-2"
 												onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-												<a href="process?num=-1&id=${i.product.productID}"><i
+												<a href="process?num=-1&id=${i.product.productID}"> <i
 													class="fas fa-minus"></i></a>
 
 											</button>
@@ -48,7 +49,7 @@
 												value="${i.quantity}" type="number"
 												class="form-control form-control-sm" />
 
-											<button class="btn btn-link px-2" type="button"
+											<button class="btn btn-link px-2"
 												onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
 												<a href="process?num=1&id=${i.product.productID}"><i
 													class="fas fa-plus"></i></a>
@@ -59,9 +60,9 @@
 										</div>
 										<div>
 											<form action="process" method="post">
-												<input type="hidden" name="id"
+												<input type="hidden" name="ID"
 													value="${i.product.productID }" />
-												<button	class="col-md-1 col-lg-1 col-xl-1 text-end btn-del">
+												<button class="col-md-1 col-lg-1 col-xl-1 text-end btn-del">
 													<i class="fas fa-trash fa-lg"></i>
 												</button>
 											</form>
@@ -69,17 +70,17 @@
 									</div>
 								</div>
 							</div>
-
+                
 						</c:forEach>
 
-
+ <span>Tổng thành tiền:</span> <strong>${o.totalMoney }</strong>
 
 
 						<form action="checkout" method="post">
 
 							<div class="card " style="margin-bottom: 20px;">
 								<div class="card-body">
-									<button type="submit" class="btn btn-warning btn-block btn-lg">Mua
+									<button class="btn btn-warning btn-block btn-lg">Mua
 										hàng</button>
 								</div>
 							</div>

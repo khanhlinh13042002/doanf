@@ -50,8 +50,12 @@ public class LoginController extends HttpServlet{
 			rq.forward(req, resp);
 		}else {
 			HttpSession session = req.getSession();
+			session.setAttribute("user", user);
 			session.setAttribute("userloginsuccess", user.getUserName());
+			session.setAttribute("userloginsuccessID", user.getUserID());
 			/*session.setMaxInactiveInterval(10);*/
+			req.setAttribute("user", user);
+			req.setAttribute("id", user.getUserID());
 			req.setAttribute("user", user.getUserName());
 			req.getRequestDispatcher("views/web/home.jsp").forward(req, resp);
 			resp.sendRedirect("web-home");

@@ -18,7 +18,7 @@ public class OrderDAO {
 		LocalDate curDate = java.time.LocalDate.now();
 		String date = curDate.toString();
 		try {
-			String query = "insert into oder value ? ? ? ?";
+			String query = "insert into oder value ? ? ? ";
 			conn = new DBContext().getConnection();
 			ps = conn.prepareStatement(query);
 			ps.setInt(1,user.getUserID());
@@ -40,6 +40,14 @@ public class OrderDAO {
 					st2.setDouble(4,i.getPrice());
 					st2.executeUpdate();
 				}
+			}
+			String sql3="update product set amount=amount-? where id=? ";
+			PreparedStatement st3 = conn.prepareStatement(sql3);
+			for(Item i:cart.getItems()) {
+				st3.setInt(1, i.getQuantity());
+				st3.setInt(2, i.getProduct().getProductID());
+				st3.executeUpdate()	;
+				
 			}
 			}catch(Exception e) {
 			
